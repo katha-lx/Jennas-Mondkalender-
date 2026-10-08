@@ -1325,5 +1325,55 @@ function initCozyV4(){document.getElementById('weatherCity').value=localStorage.
 // Start the complete app only after all modules are loaded.
 init();
 </script>
+
+<script>
+(function(){
+  const starts=['Ich darf','Ich entscheide mich,','Ich lerne,','Ich erlaube mir,','Ich vertraue darauf,','Ich bin bereit,','Ich verdiene es,','Ich finde Mut,','Ich schenke mir','Ich nehme mir Zeit,','Ich erkenne,','Ich feiere'];
+  const ends=[
+    'meine Grenzen liebevoll zu achten.','meinen eigenen Rhythmus zu leben.','auch kleine Fortschritte zu würdigen.',
+    'heute sanft mit mir zu sein.','meiner Intuition ein Stück mehr zu vertrauen.','Ruhe genauso ernst zu nehmen wie Leistung.',
+    'mich nicht mit anderen vergleichen zu müssen.','Platz für Freude zu machen.','mich selbst mit Wärme anzusehen.',
+    'loszulassen, was heute nicht zu mir gehört.','meine Bedürfnisse klar wahrzunehmen.','mir selbst ein sicherer Ort zu sein.',
+    'meine Energie bewusst zu schützen.','unperfekt und trotzdem wertvoll zu sein.','mich über kleine schöne Dinge zu freuen.',
+    'meinem Körper zuzuhören.','Pausen ohne schlechtes Gewissen zu machen.','heute nur den nächsten Schritt zu gehen.',
+    'meinen Gefühlen Raum zu geben.','mich für das zu entscheiden, was mir guttut.','meine eigene Geschwindigkeit zu respektieren.',
+    'mir Anerkennung zu geben, statt nur nach außen zu suchen.','Veränderung nicht erzwingen zu müssen.','mich immer wieder neu auszurichten.',
+    'meine Stärke auch in meiner Weichheit zu sehen.','mich von Erwartungen zu lösen.','meine Zeit als kostbar zu behandeln.',
+    'meinen inneren Kompass ernst zu nehmen.','mich heute nicht beweisen zu müssen.','das Gute in diesem Tag wahrzunehmen.',
+    'mir selbst neugierig statt kritisch zu begegnen.'
+  ];
+  const affirmations=[];
+  outer: for(const a of starts){for(const b of ends){affirmations.push(a+' '+b);if(affirmations.length===365)break outer;}}
+  const nudges=[
+    'Du bist kein Kaktus. Ein Glas Wasser wäre jetzt eine brillante Idee! 🌵',
+    'Hydration, Hexe! Dein Gehirn bestellt Nachschub. 💧',
+    'Ein Schluck für dich, bevor du wieder die Welt rettest. ✨',
+    'Deine Nieren haben eine Beschwerde eingereicht. Wasser, bitte! 😄',
+    'Zaubertränke sind gut. Leitungswasser tut es auch. 🔮',
+    'Dein innerer Zimmerfarn winkt verzweifelt. Gieß dich! 🌿',
+    'Plot Twist: Kaffee ist kein Ersatz für Wasser. ☕💧',
+    'Kosmische Durchsage: Dein Wasserglas fühlt sich vernachlässigt. 🌙',
+    'Trink kurz was. Deine zukünftige Version sagt Danke. ✨',
+    'Einmal Wasser nachfüllen – der Rest der Welt kann 30 Sekunden warten. 💧'
+  ];
+  function dayNo(){
+    const d=new Date();
+    return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000);
+  }
+  function renderIndependentDaily(){
+    const n=dayNo();
+    const a=document.getElementById('dailyAffirmation');
+    const c=document.getElementById('affirmationCount');
+    const w=document.getElementById('waterNudge');
+    if(a) a.textContent='„'+affirmations[((n%365)+365)%365]+'“';
+    if(c) c.textContent='365 Affirmationen · jeden Tag eine neue';
+    if(w) w.textContent=nudges[((n%nudges.length)+nudges.length)%nudges.length];
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',renderIndependentDaily);
+  else renderIndependentDaily();
+  window.addEventListener('load',renderIndependentDaily);
+})();
+</script>
+
 </body>
 </html>
