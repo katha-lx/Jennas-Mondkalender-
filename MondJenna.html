@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mond & Rhythmus • Jenna · Cozy V6</title>
+
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#090B10">
+
+  <!-- Standard PWA Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-cosmic: #090B10;
+    --card-bg: rgba(18, 22, 34, 0.78);
+    --card-inner: rgba(12, 15, 25, 0.68);
+    --border: rgba(212, 175, 106, 0.22);
+    --border-glow: rgba(224, 186, 120, 0.45);
+    --gold: #E5C384;
+    --gold-bright: #F7E7C4;
+    --amethyst: #9D84B7;
+    --amethyst-soft: rgba(157, 132, 183, 0.18);
+    --starlight: #F0F3FA;
+    --muted: #8E97AB;
+    --radius: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+  
+  body {
+    background-color: var(--bg-cosmic);
+    background-image: 
+      radial-gradient(circle at 20% 12%, rgba(157, 132, 183, 0.22), transparent 45%),
+      radial-gradient(circle at 80% 25%, rgba(229, 195, 132, 0.18), transparent 40%),
+      radial-gradient(circle at 50% 85%, rgba(35, 45, 75, 0.35), transparent 50%),
+      radial-gradient(circle at 50% 50%, #0D1019, #06070B);
+    color: var(--starlight);
+    line-height: 1.6;
+    padding-bottom: 95px;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 620px; margin: 0 auto; padding: 20px 16px; }
+
+  header { text-align: center; padding: 14px 0 10px; position: relative; }
+  .moon-orb {
+    font-size: 2.3rem;
+    color: var(--gold);
+    display: inline-block;
+    filter: drop-shadow(0 0 16px rgba(229, 195, 132, 0.65));
+    animation: gentlePulse 6s ease-in-out infinite;
+  }
+  @keyframes gentlePulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(229,195,132,0.55)); }
+    50% { transform: scale(1.04); filter: drop-shadow(0 0 22px rgba(229,195,132,0.85)); }
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .subtitle {
+    font-size: 0.74rem;
+    color: var(--amethyst);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Daily Reminder Quote Banner */
+  .daily-reminder-card {
+    background: linear-gradient(135deg, rgba(28, 22, 42, 0.85) 0%, rgba(18, 22, 34, 0.9) 100%);
+    border: 1px solid rgba(229, 195, 132, 0.35);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .daily-reminder-tag {
+    font-size: 0.68rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .daily-reminder-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.18rem;
+    font-style: italic;
+    color: var(--gold-bright);
+    line-height: 1.45;
+  }
+
+  .card {
+    background: var(--card-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: var(--radius);
+    padding: 22px 18px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+    position: relative;
+  }
+
+  /* Phase Banner */
+  .phase-banner {
+    background: linear-gradient(145deg, rgba(30, 36, 56, 0.95) 0%, rgba(16, 20, 32, 0.98) 100%);
+    border: 1px solid var(--border-glow);
+    color: var(--gold-bright);
+    padding: 20px 18px;
+    border-radius: var(--radius);
+    margin-bottom: 18px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(229, 195, 132, 0.08);
+  }
+  .phase-banner::before {
+    content: "✧ ✦ ✧";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 8px;
+    opacity: 0.7;
+  }
+  .moon-subhead {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(229, 195, 132, 0.12);
+    border: 1px solid var(--border);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  .phase-tag {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 2.5px;
+    color: var(--amethyst);
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .phase-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.95rem;
+    font-weight: 700;
+    margin: 4px 0 2px;
+    color: #FFF;
+    letter-spacing: 0.5px;
+  }
+  .phase-days { font-size: 0.85rem; color: var(--starlight); opacity: 0.9; }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .badge {
+    background: rgba(229, 195, 132, 0.15);
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Oracle Boxes */
+  .oracle-box {
+    background: var(--card-inner);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    margin-bottom: 10px;
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .oracle-box strong { color: var(--gold); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 600; font-size: 0.88rem; }
+  .oracle-box p { color: var(--starlight); font-size: 0.84rem; line-height: 1.55; opacity: 0.95; }
+
+  /* Checklists */
+  .checklist { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    background: var(--card-inner);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.86rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .check-item:hover { border-color: var(--border-glow); background: rgba(35, 45, 65, 0.45); }
+  .check-item.life-item { border-left: 3px solid var(--amethyst); }
+  .check-item.ritual-item { border-left: 3px solid var(--gold); }
+  .check-item input[type="checkbox"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+
+  .add-item-row { display: flex; gap: 8px; margin-top: 10px; }
+  .add-item-row input {
+    flex: 1;
+    background: rgba(10, 13, 22, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 12px;
+    color: var(--starlight);
+    font-size: 0.86rem;
+    outline: none;
+  }
+  .add-item-row input:focus { border-color: var(--gold); }
+  .add-item-row button {
+    background: linear-gradient(135deg, rgba(65, 55, 90, 0.9), rgba(45, 35, 70, 0.95));
+    color: var(--gold-bright);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .add-item-row button:hover { border-color: var(--gold); }
+
+  .food-del { color: #A36A6A; background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 0 4px; }
+  .food-del:hover { color: #E58B8B; }
+
+  /* Pills */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .pill-container {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(12, 16, 26, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 11px;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+  .pill-container:hover { border-color: var(--gold); }
+  .pill-container.active {
+    background: linear-gradient(135deg, var(--gold), #D4AF6A);
+    border-color: var(--gold);
+  }
+  .pill-container.active .pill-label { color: #090B10; font-weight: 600; }
+  .pill-container.active .pill-del-btn { color: #3A2A10; }
+  .pill-label { font-size: 0.78rem; color: var(--starlight); user-select: none; }
+  .pill-del-btn { background: none; border: none; color: #727C94; font-size: 0.95rem; margin-left: 6px; cursor: pointer; padding: 0 2px; line-height: 1; }
+  .pill-del-btn:hover { color: #E58B8B; }
+
+  textarea {
+    width: 100%;
+    background: rgba(10, 13, 22, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 12px;
+    color: var(--starlight);
+    font-size: 0.86rem;
+    outline: none;
+    resize: none;
+    margin-top: 6px;
+  }
+  textarea:focus { border-color: var(--gold); }
+
+  /* Tables */
+  .eval-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.84rem; }
+  .eval-table th, .eval-table td { padding: 9px 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .eval-table th { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 600; }
+  .eval-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* Navigation Bar */
+  .tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 12, 18, 0.96);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    max-width: 620px;
+    margin: 0 auto;
+    z-index: 100;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    font-size: 0.72rem;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .tab-btn svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .tab-btn.active { color: var(--gold); font-weight: 600; }
+
+  .field { margin-bottom: 12px; }
+  label { font-size: 0.8rem; color: var(--amethyst); display: block; margin-bottom: 4px; font-weight: 500; }
+  input[type="date"], input[type="number"] {
+    width: 100%;
+    background: rgba(10, 13, 22, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--starlight);
+    font-size: 0.9rem;
+    outline: none;
+  }
+  input[type="date"]:focus, input[type="number"]:focus { border-color: var(--gold); }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(65, 55, 90, 0.95), rgba(40, 32, 60, 0.95));
+    color: var(--gold-bright);
+    margin-top: 8px;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .btn:hover { border-color: var(--gold); box-shadow: 0 0 15px rgba(229, 195, 132, 0.25); }
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--border);
+  }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px; }
+  .stat-card {
+    background: var(--card-inner);
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-val { font-size: 1.5rem; font-weight: 700; color: var(--gold-bright); font-family: 'Cinzel', serif; }
+  .stat-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  .archive-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(229, 195, 132, 0.12);
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--gold-bright);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .archive-badge.active {
+    background: var(--gold);
+    color: #090B10;
+    font-weight: 600;
+  }
+
+  .hidden { display: none; }
+
+/* === Cozy Seasons Expansion === */
+.season-layer{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}.season-particle{position:absolute;top:-10vh;animation:seasonFall linear infinite;opacity:.45}@keyframes seasonFall{to{transform:translate3d(12vw,115vh,0) rotate(480deg)}}
+.weather-strip{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:-4px 0 16px;font-size:.78rem;color:var(--gold-bright)}.weather-chip{border:1px solid var(--border);background:rgba(12,15,25,.7);padding:6px 10px;border-radius:20px}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.idea-card{background:var(--card-inner);border:1px solid var(--border);border-radius:14px;padding:13px}.idea-card b{display:block;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:4px}.idea-card p{font-size:.78rem;color:var(--starlight);opacity:.9}
+.affirmation{font-family:'Cormorant Garamond',serif;font-size:1.25rem;text-align:center;color:var(--gold-bright);padding:8px 4px}.progress-row{display:flex;align-items:center;gap:10px;margin-top:10px}.progress-track{flex:1;height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,var(--amethyst),var(--gold));width:0;transition:.25s}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.cal-dow{text-align:center;font-size:.68rem;color:var(--muted)}.cal-day{min-height:44px;border:1px solid var(--border);border-radius:9px;background:var(--card-inner);color:var(--starlight);font-size:.76rem;padding:5px;cursor:pointer}.cal-day.today{border-color:var(--gold);box-shadow:0 0 10px rgba(229,195,132,.2)}.cal-day.has-event:after{content:'✦';display:block;color:var(--gold);font-size:.65rem}.cal-day.empty{opacity:.2;cursor:default}.event-item,.journal-entry{background:var(--card-inner);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-top:8px}.event-item strong,.journal-entry strong{color:var(--gold)}
+input[type='text'],input[type='time'],select{width:100%;background:rgba(10,13,22,.8);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--starlight);font-size:.86rem;outline:none}.tab-bar{overflow-x:auto;justify-content:flex-start;padding-left:8px;padding-right:8px}.tab-btn{min-width:70px;flex:1}.section-kicker{text-transform:uppercase;letter-spacing:2px;color:var(--amethyst);font-size:.68rem;margin-bottom:4px}.magic-note{border-left:3px solid var(--amethyst);padding-left:12px;color:var(--starlight);font-size:.84rem}.reminder-time-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+body.season-autumn{background-image:radial-gradient(circle at 15% 10%,rgba(153,83,43,.25),transparent 40%),radial-gradient(circle at 85% 20%,rgba(193,129,70,.18),transparent 40%),radial-gradient(circle at 50% 85%,rgba(74,43,50,.32),transparent 50%),radial-gradient(circle at 50% 50%,#11100f,#070708)}body.season-winter{background-image:radial-gradient(circle at 20% 12%,rgba(130,170,210,.22),transparent 45%),radial-gradient(circle at 80% 25%,rgba(220,235,255,.14),transparent 40%),radial-gradient(circle at 50% 50%,#0c1420,#05070b)}body.season-spring{background-image:radial-gradient(circle at 20% 12%,rgba(185,132,183,.2),transparent 45%),radial-gradient(circle at 80% 25%,rgba(141,181,132,.17),transparent 40%),radial-gradient(circle at 50% 50%,#11171a,#07090b)}body.season-summer{background-image:radial-gradient(circle at 20% 12%,rgba(229,195,132,.2),transparent 45%),radial-gradient(circle at 80% 25%,rgba(98,154,166,.17),transparent 40%),radial-gradient(circle at 50% 50%,#10171a,#07090b)}
+
+
+/* V8: klare einzeilige Tab-Navigation */
+.tab-bar{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:5px!important;overflow:visible!important;justify-content:stretch!important;padding:7px 7px calc(7px + env(safe-area-inset-bottom))!important;background:rgba(9,11,16,.94)!important;}
+.tab-btn{min-width:0!important;width:100%!important;flex:none!important;padding:7px 2px!important;border:1px solid rgba(229,195,132,.20)!important;border-radius:12px!important;background:linear-gradient(180deg,rgba(31,35,48,.86),rgba(15,18,27,.9))!important;box-shadow:inset 0 1px rgba(255,255,255,.035),0 3px 10px rgba(0,0,0,.18)!important;font-size:clamp(.52rem,2.25vw,.68rem)!important;line-height:1.05!important;white-space:nowrap!important;}
+.tab-btn svg,.tab-btn>span{width:17px!important;height:17px!important;font-size:17px!important;}
+.tab-btn.active{color:var(--gold-bright)!important;border-color:rgba(229,195,132,.72)!important;background:linear-gradient(180deg,rgba(93,72,110,.92),rgba(47,39,66,.96))!important;box-shadow:0 0 15px rgba(229,195,132,.16),inset 0 0 12px rgba(229,195,132,.08)!important;transform:translateY(-2px);}
+@media(max-width:390px){.tab-bar{gap:3px!important;padding-left:4px!important;padding-right:4px!important}.tab-btn{font-size:.49rem!important;padding-left:1px!important;padding-right:1px!important}.tab-btn svg,.tab-btn>span{width:15px!important;height:15px!important;font-size:15px!important}}
+.report-bars{display:flex;flex-direction:column;gap:9px;margin-top:10px}.report-bar-row{display:grid;grid-template-columns:minmax(105px,1.2fr) 2fr 44px;gap:8px;align-items:center;font-size:.8rem}.report-track{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.report-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--amethyst),var(--gold))}.report-empty{color:var(--muted);font-size:.82rem;padding:8px 0}
+
+  .moon-phase-swipe{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;scrollbar-width:none;padding:3px 2px 10px;-webkit-overflow-scrolling:touch}.moon-phase-swipe::-webkit-scrollbar{display:none}.moon-phase-card{min-width:calc(100% - 18px);scroll-snap-align:start;background:linear-gradient(145deg,rgba(28,31,48,.94),rgba(13,16,27,.94));border:1px solid var(--border-glow);border-radius:18px;padding:22px 18px;box-shadow:inset 0 0 24px rgba(229,195,132,.05)}.moon-phase-card.current{box-shadow:0 0 20px rgba(229,195,132,.14),inset 0 0 25px rgba(157,132,183,.09)}.phase-big{font-size:3.4rem;text-align:center;filter:drop-shadow(0 0 13px rgba(229,195,132,.35))}.phase-card-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;text-align:center;color:var(--gold-bright);font-weight:700;margin:4px 0}.phase-current-label{text-align:center;color:var(--gold);font-size:.7rem;letter-spacing:1.7px;text-transform:uppercase;min-height:20px}.phase-section{margin-top:13px;padding-top:10px;border-top:1px solid rgba(229,195,132,.13)}.phase-section strong{color:var(--gold);font-size:.82rem}.phase-section p{font-size:.83rem;line-height:1.55;color:var(--starlight);opacity:.94;margin-top:3px}
+</style>
+
+<style>
+.subtle{font-size:.74rem;color:var(--muted);margin-top:10px;line-height:1.55}.water-nudge{font-family:'Cormorant Garamond',serif;font-size:1.28rem;color:var(--gold-bright)}.mood-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin:14px 0}.mood-day{background:var(--card-inner);border:1px solid var(--border);border-radius:10px;min-height:43px;color:var(--starlight);font-size:.78rem;cursor:pointer}.mood-day.selected{border-color:var(--gold);background:rgba(229,195,132,.23)}.mood-day .mood-dot{display:block;font-size:.85rem}.mood-head{text-align:center;color:var(--amethyst);font-size:.7rem}.mood-pill{display:inline-block;padding:8px 10px;border:1px solid var(--border);border-radius:20px;background:var(--card-inner);color:var(--starlight);margin:3px;cursor:pointer;font-size:.8rem}.mood-pill.active{background:var(--gold);color:#17131b}.weather-rain .season-layer:after{content:' ';position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(105deg,transparent 0 18px,rgba(170,205,255,.17) 19px,transparent 20px 42px);animation:rainFall .5s linear infinite;opacity:.55}@keyframes rainFall{from{background-position:0 0}to{background-position:0 90px}}body.season-autumn #tab-season:not(.hidden){background:radial-gradient(circle at top,rgba(172,90,34,.24),transparent 65%)}body.season-winter #tab-season:not(.hidden){background:radial-gradient(circle at top,rgba(100,158,196,.2),transparent 65%)}body.season-spring #tab-season:not(.hidden){background:radial-gradient(circle at top,rgba(120,182,123,.2),transparent 65%)}body.season-summer #tab-season:not(.hidden){background:radial-gradient(circle at top,rgba(239,180,77,.2),transparent 65%)}
+
+  .moon-phase-swipe{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;scrollbar-width:none;padding:3px 2px 10px;-webkit-overflow-scrolling:touch}.moon-phase-swipe::-webkit-scrollbar{display:none}.moon-phase-card{min-width:calc(100% - 18px);scroll-snap-align:start;background:linear-gradient(145deg,rgba(28,31,48,.94),rgba(13,16,27,.94));border:1px solid var(--border-glow);border-radius:18px;padding:22px 18px;box-shadow:inset 0 0 24px rgba(229,195,132,.05)}.moon-phase-card.current{box-shadow:0 0 20px rgba(229,195,132,.14),inset 0 0 25px rgba(157,132,183,.09)}.phase-big{font-size:3.4rem;text-align:center;filter:drop-shadow(0 0 13px rgba(229,195,132,.35))}.phase-card-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;text-align:center;color:var(--gold-bright);font-weight:700;margin:4px 0}.phase-current-label{text-align:center;color:var(--gold);font-size:.7rem;letter-spacing:1.7px;text-transform:uppercase;min-height:20px}.phase-section{margin-top:13px;padding-top:10px;border-top:1px solid rgba(229,195,132,.13)}.phase-section strong{color:var(--gold);font-size:.82rem}.phase-section p{font-size:.83rem;line-height:1.55;color:var(--starlight);opacity:.94;margin-top:3px}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="moon-orb" id="moonIcon">☾</div>
+    <h1>Mond & Rhythmus</h1>
+    <div class="subtitle">Jennas Kosmischer Zyklus- & Lifestyle-Begleiter</div>
+  </header>
+
+  <!-- TAB: ME-TIME -->
+  <div id="tab-today">
+    <!-- 1. Tägliche Affirmation -->
+    <div class="card">
+      <h2>✧ Deine tägliche Affirmation</h2>
+      <div class="affirmation" id="dailyAffirmation"></div>
+      <p class="subtle" id="affirmationCount"></p>
+    </div>
+
+    <!-- 2. Tag & Wetter -->
+    <div class="card">
+      <h2>Heute <span class="badge" id="todayDateStr">Heute</span></h2>
+      <div class="weather-strip" style="margin:4px 0 0;justify-content:flex-start;">
+        <span class="weather-chip" id="seasonChip">🍂 Herbst</span>
+        <span class="weather-chip" id="weatherChip">🌦 Wetter wird geladen …</span>
+        <span class="weather-chip" id="seasonMood">Cozy-Modus</span>
+      </div>
+      <p class="subtle">Die aktuellen Wetterdaten werden für deinen im Saison-Reiter gespeicherten Ort geladen.</p>
+    </div>
+
+    <!-- 3. Trink-Erinnerung -->
+    <div class="card">
+      <h2>💧 Zeit für einen Schluck Magie</h2>
+      <p id="waterNudge" class="water-nudge"></p>
+      <button class="btn" onclick="addWater()">Glas getrunken ✓</button>
+    </div>
+
+    <!-- 4. Tagesrhythmus + Rituale, Dehnen & Me-Time -->
+    <div class="card">
+      <h2>Daily Reminder <span class="badge" id="waterBadge">0 / 8</span></h2>
+      <div class="checklist">
+        <label class="check-item ritual-item"><span>💧 Wasser trinken</span><button class="btn btn-outline" style="width:auto;margin:0;padding:5px 12px" onclick="addWater()">+1</button></label>
+        <label class="check-item life-item"><span>📖 Journalen</span><input id="habitJournal" type="checkbox" onchange="saveDailyRhythm()"></label>
+      </div>
+      <div class="progress-row"><span style="font-size:.75rem;color:var(--muted)">Wasser</span><div class="progress-track"><div class="progress-fill" id="waterProgress"></div></div></div>
+
+      <div style="height:1px;background:var(--border);margin:22px 0 18px;"></div>
+      <h2>Rituale und Me-Time</h2>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">Kleine Wohltaten für deinen Körper und dein Nervensystem:</p>
+      <div class="checklist" id="ritualsContainer"></div>
+      <div class="add-item-row">
+        <input type="text" id="newRitualInput" placeholder="+ Eigenes Ritual / Übung hinzufügen..." onkeydown="if(event.key==='Enter') addCustomRitual()">
+        <button onclick="addCustomRitual()">+</button>
+      </div>
+    </div>
+
+    <!-- Unsichtbare Kompatibilitätsfelder: erhalten bestehende Auswertung/Datenspeicherung -->
+    <div class="hidden" aria-hidden="true">
+      <div id="dailyReminderQuote"></div>
+      <div id="phaseBanner"><span id="astronomicalMoonGlyph"></span><span id="astronomicalMoonName"></span><span id="phaseTag"></span><span id="phaseName"></span><span id="phaseDays"></span></div>
+      <div id="hormoneDesc"></div><div id="moonTip"></div><div id="bodyTips"></div>
+      <div id="lifestyleHabitsContainer"></div><input id="newLifestyleInput">
+      <div id="energyGroup"></div><input id="newEnergyInput">
+      <div id="symptomsGroup"></div><input id="newSymptomInput">
+      <textarea id="dailyNotes"></textarea>
+    </div>
+  </div>
+
+  <!-- TAB: SAISON -->
+  <div id="tab-season" class="hidden"><div class="card"><div class="section-kicker">Im Rhythmus der Natur</div><h2 id="seasonTitle">Saisonale Inspiration</h2><p class="magic-note" id="seasonIntro"></p></div><div class="card"><h2>🌦 Wetter & Kleiderzauber</h2><div class="field"><label>Ort für Wetterdaten</label><div class="add-item-row"><input id="weatherCity" placeholder="z. B. Xanten" value="Xanten"><button onclick="loadWeather()">Suchen</button></div></div><div id="liveWeather" class="oracle-box">Wetterdaten laden nur mit Internetverbindung.</div><p class="subtle">Wetterdaten: Open-Meteo · Ortswahl wird lokal gespeichert.</p></div><div class="card"><h2>🍲 Saisonrezept</h2><div id="seasonRecipe"></div></div><div class="card"><h2>🍁 DIY der Woche</h2><div id="weeklyDIY"></div></div><div class="card"><h2>🌿 Saisonideen & Draußenzeit</h2><div class="mini-grid" id="seasonDeepIdeas"></div></div><div class="card"><h2>Bewegung & Selfcare</h2><div id="wellnessIdeas"></div></div></div>
+
+  <!-- TAB: MAGIE -->
+  <div id="tab-magic" class="hidden"><div class="phase-banner"><div class="moon-subhead"><span id="magicMoonGlyph">☾</span><span id="magicMoonName">Mondphase</span></div><div class="phase-tag">MOND • MAGIE • INTUITION</div><div class="phase-name" id="magicPhaseTitle">Dein Mondimpuls</div><div class="phase-days" id="magicIllumination"></div></div><div class="card"><h2>Ritual für diese Mondphase</h2><div class="oracle-box"><strong>✦ Intention</strong><p id="magicIntention"></p></div><div class="oracle-box"><strong>☾ Kleines Ritual</strong><p id="magicRitual"></p></div><div class="oracle-box"><strong>✧ Journaling-Frage</strong><p id="magicPrompt"></p></div></div><div class="card"><h2>🌕 Vollmondzeremonie</h2><div id="fullMoonCeremony"></div><p class="subtle">Astrologische Symbolik ist eine Deutungstradition, keine wissenschaftliche Vorhersage.</p></div><div class="card"><h2>Vollmondjournal</h2><textarea id="magicNotes" rows="6" placeholder="Zeichen, Träume, Karten, Intuition, Wünsche …" oninput="localStorage.setItem('jenna_magic_notes',this.value)"></textarea></div></div>
+
+  <!-- TAB: JOURNAL -->
+  <div id="tab-journal" class="hidden"><div class="card"><h2>🌷 Mood-Tracker · Monatsübersicht</h2><div class="calendar-head"><button class="btn btn-outline" style="width:auto" onclick="changeMoodMonth(-1)">‹</button><strong id="moodMonthTitle"></strong><button class="btn btn-outline" style="width:auto" onclick="changeMoodMonth(1)">›</button></div><p class="subtle">Wähle einen Tag und markiere Stimmung und Herzensmomente.</p><div id="moodCalendar" class="mood-calendar"></div><div id="moodDayPanel"></div></div><div class="card"><h2>✧ Zwei Fragen für heute</h2><p id="journalQuestion1" class="oracle-box"></p><p id="journalQuestion2" class="oracle-box"></p></div><div class="card"><div class="section-kicker">Ein Ort nur für dich</div><h2>Journal & Notizen</h2><textarea id="journalText" rows="8" placeholder="Was bewegt dich gerade? Was möchtest du festhalten?"></textarea><button class="btn" onclick="saveJournalEntry()">✧ Eintrag bewahren</button></div><div class="card"><h2>Deine letzten Seiten</h2><div id="journalList"></div></div></div>
+
+  <!-- TAB: AUSWERTUNG -->
+  <div id="tab-report" class="hidden">
+    <div class="card">
+      <div class="section-kicker">Dein Monat in kleinen Spuren</div>
+      <h2>Auswertung <span class="badge" id="reportMonthLabel">Monat</span></h2>
+      <p style="font-size:.83rem;color:var(--muted);margin-bottom:12px">Die Auswertung folgt jetzt deinem Mood-Tracker, deinen Herzensmomenten, Ritualen und Journaleinträgen.</p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-val" id="statTrackedDays">0</div><div class="stat-lbl">Getrackte Tage</div></div>
+        <div class="stat-card"><div class="stat-val" id="statJournalCount">0</div><div class="stat-lbl">Journalseiten</div></div>
+        <div class="stat-card"><div class="stat-val" id="statRitualRate">0 %</div><div class="stat-lbl">Me-Time & Rituale</div></div>
+        <div class="stat-card"><div class="stat-val" id="statTopMood">–</div><div class="stat-lbl">Häufigste Stimmung</div></div>
+      </div>
+    </div>
+    <div class="card"><h2>🌷 Stimmung im Monat</h2><div id="moodReportBars" class="report-bars"></div></div>
+    <div class="card"><h2>✧ Was deinen Monat bereichert hat</h2><div id="momentReportBars" class="report-bars"></div></div>
+    <div class="card"><h2>🌿 Rituale und Me-Time</h2><div id="ritualReportBars" class="report-bars"></div></div>
+    <div class="card"><p class="subtle">Die Monatsauswertung richtet sich nach dem Monat, den du im Journal-Mood-Tracker ausgewählt hast.</p><button class="btn" onclick="renderReport()">Auswertung aktualisieren</button></div>
+  </div>
+
+  <!-- TAB: HINTERGRUND -->
+  <div id="tab-settings" class="hidden">
+    <div class="card">
+      <h2>🌙 Die 8 Mondphasen</h2>
+      <p style="font-size:.84rem;color:var(--muted);margin-bottom:14px;">Der Mond braucht im Mittel etwa 29,5 Tage von Neumond zu Neumond. Wische nach links oder rechts durch die Phasen. Beim Öffnen steht die <strong style="color:var(--gold)">heutige Mondphase immer zuerst</strong>.</p>
+      <div id="moonPhaseSwipe" class="moon-phase-swipe"></div>
+      <div style="text-align:center;color:var(--muted);font-size:.76rem;margin-top:8px;">← wischen · Mondzyklus entdecken →</div>
+    </div>
+
+    <div class="card">
+      <h2>📱 App auf deinen Bildschirm legen</h2>
+      <p style="font-size:.86rem;line-height:1.65;margin-bottom:10px;"><strong>Android / Chrome:</strong><br>1. Öffne diese Seite in Chrome.<br>2. Tippe oben rechts auf <strong>⋮</strong>.<br>3. Tippe auf <strong>„Zum Startbildschirm hinzufügen“</strong> oder <strong>„App installieren“</strong>.<br>4. Bestätige mit <strong>„Hinzufügen“</strong>. Fertig – Mond & Rhythmus liegt danach wie eine normale App auf deinem Bildschirm. ✨</p>
+      <p style="font-size:.86rem;line-height:1.65;margin-bottom:10px;"><strong>iPhone / Safari:</strong><br>1. Öffne die Seite in Safari.<br>2. Tippe unten auf <strong>Teilen ⬆</strong>.<br>3. Wähle <strong>„Zum Home-Bildschirm“</strong>.<br>4. Tippe auf <strong>„Hinzufügen“</strong>.</p>
+      <button class="btn" id="installAppBtn" onclick="installAppPrompt()">✧ App installieren</button>
+    </div>
+
+    <div class="card">
+      <h2>Datensicherung</h2>
+      <p style="font-size:0.83rem; color:var(--muted); margin-bottom: 8px;">Deine Einträge bleiben lokal auf deinem Gerät. Hier kannst du ein Backup speichern oder wieder einlesen.</p>
+      <div style="display:flex; gap:10px;"><button class="btn btn-outline" style="flex:1;" onclick="exportData()">⬇ Exportieren</button><button class="btn btn-outline" style="flex:1;" onclick="triggerImport()">⬆ Wiederherstellen</button></div>
+      <input type="file" id="backupFileInput" accept=".json" style="display:none;" onchange="handleFileImport(event)">
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="tab-bar">
+  <button class="tab-btn active" id="btnTabToday" onclick="switchTab('today')">
+    <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+    Me-Time
+  </button>
+  <button class="tab-btn" id="btnTabSeason" onclick="switchTab('season')"><span style="font-size:19px">🍂</span>Saison</button>
+  <button class="tab-btn" id="btnTabMagic" onclick="switchTab('magic')"><span style="font-size:19px">✦</span>Magie</button>
+  <button class="tab-btn" id="btnTabJournal" onclick="switchTab('journal')"><span style="font-size:19px">✎</span>Journal</button>
+  <button class="tab-btn" id="btnTabReport" onclick="switchTab('report')">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    Auswertung
+  </button>
+  <button class="tab-btn" id="btnTabSettings" onclick="switchTab('settings')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    Hintergrund
+  </button>
+</nav>
+
+<script>
+  const KEY_SETTINGS = 'jenna_mond_settings_v2';
+  const KEY_LIFESTYLE = 'jenna_mond_lifestyle_v2';
+  const KEY_RITUALS = 'jenna_mond_rituals_v2';
+  const KEY_ENERGY = 'jenna_mond_energy_v2';
+  const KEY_SYMPTOMS = 'jenna_mond_symptoms_v2';
+  const KEY_LOGS = 'jenna_mond_logs_v2';
+  const KEY_ARCHIVE = 'jenna_mond_archive_v2';
+
+  // 31 Daily Celestial Quotes for Serenity & Motivation
+  const DAILY_QUOTES = [
+    "Atme tief ein. Du bist genau dort, wo du heute sein sollst.",
+    "Vertraue dem Fluss des Lebens. Alles entfaltet sich zur richtigen Zeit.",
+    "In der Ruhe liegt nicht nur Kraft, sondern deine tiefste Wahrheit.",
+    "Wie die Mondin darfst du dich verändern, ohne an Glanz zu verlieren.",
+    "Erlaube dir heute Sanftmut. Du musst die Welt nicht im Alleingang tragen.",
+    "Höre auf deinen Körper – er spricht in leisen, weisen Worten zu dir.",
+    "Aus dem Stillstand wachsen die schönsten neuen Wurzeln.",
+    "Sei stolz auf den leisen Mut, mit dem du jeden Tag begegnest.",
+    "Lass los, was schwer ist. Mache Raum für Licht und frische Freude.",
+    "Deine Intuition ist ein stiller Kompass. Folge seinem Schimmern.",
+    "Es liegt eine heilige Schönheit darin, einfach nur im Moment zu sein.",
+    "Nähre heute deine Seele mit den Dingen, die dir Geborgenheit schenken.",
+    "Alles in der Natur hat seine Zeit zu blühen und seine Zeit zu ruhen.",
+    "Du bist der sichere Hafen für dich selbst. Kehre heim in deine Mitte.",
+    "Ein sanfter Schritt nach vorne ist stärker als tausend erzwungene Sprünge.",
+    "Dein Wert bemisst sich nicht an Leistung, sondern an deinem puren Sein.",
+    "Halte kurz inne und spüre den Boden unter dir. Du bist getragen.",
+    "Lass die Erwartungen anderer verwehen wie Sternenstaub im Wind.",
+    "Heute darfst du wählen, was dir Leichtigkeit schenkt.",
+    "Die Weisheit des Körpers weiß genau, was du jetzt brauchst. Schenke es ihm.",
+    "Finde Frieden im Dazwischen. Jede Phase birgt ihren eigenen Zauber.",
+    "Schenke dir selbst das Lächeln und das Mitgefühl, das du anderen gibst.",
+    "Das Universum eilt nicht, und dennoch vollendet es jedes Werk.",
+    "Gehe achtsam mit deiner Energie um. Sie ist dein wertvollster Schatz.",
+    "In deinem Herzen wohnt eine unerschütterliche Gelassenheit. Spüre sie.",
+    "Erlaube deinem Geist, weit und wolkenlos wie der Nachthimmel zu werden.",
+    "Du darfst 'Nein' zur Hektik sagen, um 'Ja' zu deiner Seele zu sprechen.",
+    "Jeder Zyklus schenkt dir die Chance, dich selbst neu zu entdecken.",
+    "Deine Sanftheit ist keine Schwäche – sie ist deine größte Heilkraft.",
+    "Lass den Tag leise ausklingen und vertraue auf die Erneuerung der Nacht.",
+    "Mögest du heute Geborgenheit, Liebe und tiefen Frieden in dir finden."
+  ];
+
+  let settings = {
+    lastPeriodDate: '2026-09-20',
+    cycleLength: 28,
+    periodLength: 5
+  };
+
+  let lifestyleList = [
+    { id: 'l_liebe', text: 'Liebe & Verbundenheit' },
+    { id: 'l_schlaf', text: 'Tief & erholsam geschlafen' },
+    { id: 'l_kreativ', text: 'Kreativ & inspiriert gewirkt' },
+    { id: 'l_treffen', text: 'Herzensmenschen getroffen' }
+  ];
+
+  // Rituals WITHOUT "Beine an die Wand"
+  let ritualList = [
+    { id: 'r1', text: 'Sanfte Dehnübungen / Yoga' },
+    { id: 'r2', text: 'Spaziergang' },
+    { id: 'r3', text: 'Me-Time / Lesen' },
+    { id: 'r4', text: '5 Minuten Stille / Meditation' }
+  ];
+
+  let energyList = [
+    "Stille / Einkehr",
+    "Geerdet / Sanft",
+    "Im Fluss",
+    "Voller Strahlkraft"
+  ];
+
+  let symptomList = [
+    "Krämpfe",
+    "Spannungsgefühl",
+    "Kopfschmerz",
+    "Müdigkeit",
+    "Stimmungsschwankung",
+    "Sensibilität",
+    "Vollkommene Ruhe",
+    "Im Einklang"
+  ];
+
+  let logs = {};
+  let archives = [];
+  let selectedArchiveIndex = -1;
+  let currentEnergy = "";
+  let currentSymptoms = [];
+
+  function getMoonPhaseData(date) {
+    const refDate = new Date(Date.UTC(2000, 0, 6, 18, 14));
+    const synodicMonth = 29.53058867;
+    const diffDays = (date.getTime() - refDate.getTime()) / (1000 * 60 * 60 * 24);
+    const phaseValue = (diffDays % synodicMonth + synodicMonth) % synodicMonth;
+    const phaseFraction = phaseValue / synodicMonth;
+    const illumination = Math.round((1 - Math.cos(2 * Math.PI * phaseFraction)) / 2 * 100);
+
+    let name = '', glyph = '';
+    if (phaseFraction < 0.03 || phaseFraction >= 0.97) { name = 'Neumond'; glyph = '🌑'; }
+    else if (phaseFraction < 0.22) { name = 'Zunehmende Mondsichel'; glyph = '🌒'; }
+    else if (phaseFraction < 0.28) { name = 'Erstes Viertel'; glyph = '🌓'; }
+    else if (phaseFraction < 0.47) { name = 'Zunehmender Dreiviertelmond'; glyph = '🌔'; }
+    else if (phaseFraction < 0.53) { name = 'Vollmond'; glyph = '🌕'; }
+    else if (phaseFraction < 0.72) { name = 'Abnehmender Dreiviertelmond'; glyph = '🌖'; }
+    else if (phaseFraction < 0.78) { name = 'Letztes Viertel'; glyph = '🌗'; }
+    else { name = 'Abnehmende Mondsichel (Balsamischer Mond)'; glyph = '🌘'; }
+
+    return { name, glyph, illumination };
+  }
+
+  function init() {
+    const savedSet = localStorage.getItem(KEY_SETTINGS);
+    if (savedSet) { try { settings = JSON.parse(savedSet); } catch(e){} }
+    else { localStorage.setItem(KEY_SETTINGS, JSON.stringify(settings)); }
+
+    const savedLife = localStorage.getItem(KEY_LIFESTYLE);
+    if (savedLife) { try { lifestyleList = JSON.parse(savedLife); } catch(e){} }
+    else { localStorage.setItem(KEY_LIFESTYLE, JSON.stringify(lifestyleList)); }
+
+    const savedRituals = localStorage.getItem(KEY_RITUALS);
+    if (savedRituals) { try { ritualList = JSON.parse(savedRituals); } catch(e){} }
+    else { localStorage.setItem(KEY_RITUALS, JSON.stringify(ritualList)); }
+
+    const savedEnergy = localStorage.getItem(KEY_ENERGY);
+    if (savedEnergy) { try { energyList = JSON.parse(savedEnergy); } catch(e){} }
+    else { localStorage.setItem(KEY_ENERGY, JSON.stringify(energyList)); }
+
+    const savedSymp = localStorage.getItem(KEY_SYMPTOMS);
+    if (savedSymp) { try { symptomList = JSON.parse(savedSymp); } catch(e){} }
+    else { localStorage.setItem(KEY_SYMPTOMS, JSON.stringify(symptomList)); }
+
+    const savedLogs = localStorage.getItem(KEY_LOGS);
+    if (savedLogs) { try { logs = JSON.parse(savedLogs); } catch(e){} }
+
+    const savedArch = localStorage.getItem(KEY_ARCHIVE);
+    if (savedArch) { try { archives = JSON.parse(savedArch); } catch(e){} }
+
+
+
+
+
+    renderToday();
+    renderLifestyleHabits();
+    renderRituals();
+    renderEnergyPills();
+    renderSymptomsPills();
+    loadTodayLog();
+  }
+
+  function getTodayKey() {
+    const d = new Date();
+    const yr = d.getFullYear();
+    const mo = String(d.getMonth() + 1).padStart(2, '0');
+    const da = String(d.getDate()).padStart(2, '0');
+    return `${yr}-${mo}-${da}`;
+  }
+
+  function renderToday() {
+    const today = new Date();
+    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    document.getElementById('todayDateStr').textContent = today.toLocaleDateString('de-DE', options);
+
+    // Set Daily Reminder Quote (based on day of month)
+    const dayOfMonth = today.getDate();
+    const quoteIndex = (dayOfMonth - 1) % DAILY_QUOTES.length;
+    document.getElementById('dailyReminderQuote').textContent = `"${DAILY_QUOTES[quoteIndex]}"`;
+
+    const moon = getMoonPhaseData(today);
+    document.getElementById('astronomicalMoonGlyph').textContent = moon.glyph;
+    document.getElementById('astronomicalMoonName').textContent = `Mond am Himmel: ${moon.name} (${moon.illumination}% beleuchtet)`;
+    document.getElementById('moonIcon').textContent = moon.glyph;
+
+    const start = new Date(settings.lastPeriodDate);
+    const diffTime = today.getTime() - start.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    const cycleLength = parseInt(settings.cycleLength) || 28;
+    const periodLength = parseInt(settings.periodLength) || 5;
+
+    let cycleDay = (diffDays % cycleLength) + 1;
+    if (cycleDay <= 0) cycleDay += cycleLength;
+
+    const daysUntilNext = cycleLength - cycleDay + 1;
+
+    let phase = '', phaseName = '', hormone = '', moonTip = '', body = '';
+
+    if (cycleDay <= periodLength) {
+      phase = 'INNERER WINTER';
+      phaseName = 'Menstruation • Neumond-Einkehr';
+      hormone = 'Hormone ruhen am tiefsten Punkt. Zeit des intuitiven Wissens, der seelischen Reinigung und der tiefen Regeneration.';
+      moonTip = 'Stille wie die Neumondin: Du musst heute nichts beweisen. Dein Körper vollbringt ein stilles Wunder der Erneuerung.';
+      body = 'Sanfte Kindeshaltung, wärmende Decken, leises Innehalten. Hör hin, was deine Seele dir zuflüstert.';
+    } else if (cycleDay <= 12) {
+      phase = 'INNERER FRÜHLING';
+      phaseName = 'Follikelphase • Zunehmendes Licht';
+      hormone = 'Östrogen steigt empor und öffnet deinen Geist für Neugier, Leichtigkeit, Optimismus und schöpferische Inspiration.';
+      moonTip = 'Knospen öffnen sich: Perfekte Tage für neue Ideen, Visionen und spielerische Entfaltung.';
+      body = 'Sanft fließendes Yoga, Tanzen, Spaziergänge im Licht – wecke deinen Körper auf.';
+    } else if (cycleDay <= 16) {
+      phase = 'INNERER SOMMER';
+      phaseName = 'Eisprung • Vollmond-Pracht';
+      hormone = 'Östrogen und Lebensenergie erreichen ihren sonnigen Höhepunkt. Du strahlst Verbundenheit, Empathie und Anziehungskraft aus.';
+      moonTip = 'Volle Pracht: Feiere deine Lebendigkeit und teile deine Wärme mit Herzensmenschen.';
+      body = 'Tiefe Dehnungen, weite Herzöffner, barfuß im Moos oder auf der Wiese erden.';
+    } else {
+      phase = 'INNERER HERBST';
+      phaseName = 'Späte Lutealphase • Die Weise Frau';
+      hormone = 'Progesteron und Östrogen ziehen sich zurück. Die Schleier lüften sich – deine Intuition wird glasklar und unbestechlich.';
+      moonTip = 'Abnehmende Mondsichel: Zeit, Grenzen zu setzen und Ballast abzuwerfen. Was dir nicht mehr dient, darf gehen.';
+      body = 'Wadendehnung an der Treppenstufe, sanfter Couch-Hüftöffner und wärmende Gemütlichkeit am Abend.';
+    }
+
+    document.getElementById('phaseTag').textContent = phase;
+    document.getElementById('phaseName').textContent = phaseName;
+    document.getElementById('phaseDays').textContent = `Zyklustag ${cycleDay} von ${cycleLength} • Noch ca. ${daysUntilNext} Tag(e) bis zur Menstruation`;
+    
+    document.getElementById('hormoneDesc').textContent = hormone;
+    document.getElementById('moonTip').textContent = moonTip;
+    document.getElementById('bodyTips').textContent = body;
+  }
+
+  function renderLifestyleHabits() {
+    const container = document.getElementById('lifestyleHabitsContainer');
+    container.innerHTML = '';
+    const todayKey = getTodayKey();
+    const todayData = logs[todayKey] || { lifestyle: {} };
+
+    lifestyleList.forEach(item => {
+      const isChecked = !!(todayData.lifestyle && todayData.lifestyle[item.id]);
+      const row = document.createElement('label');
+      row.className = 'check-item life-item';
+      row.innerHTML = `
+        <span style="flex:1; font-weight:500;">${item.text}</span>
+        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleLifestyle('${item.id}', this.checked)">
+        <button class="food-del" title="Entfernen" onclick="deleteLifestyle('${item.id}', event)">×</button>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  function toggleLifestyle(id, val) {
+    const todayKey = getTodayKey();
+    ensureLogDay(todayKey);
+    if (!logs[todayKey].lifestyle) logs[todayKey].lifestyle = {};
+    logs[todayKey].lifestyle[id] = val;
+    localStorage.setItem(KEY_LOGS, JSON.stringify(logs));
+  }
+
+  function addCustomLifestyleHabit() {
+    const input = document.getElementById('newLifestyleInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const newId = 'l_' + Date.now();
+    lifestyleList.push({ id: newId, text });
+    localStorage.setItem(KEY_LIFESTYLE, JSON.stringify(lifestyleList));
+    input.value = '';
+    renderLifestyleHabits();
+  }
+
+  function deleteLifestyle(id, ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    lifestyleList = lifestyleList.filter(l => l.id !== id);
+    localStorage.setItem(KEY_LIFESTYLE, JSON.stringify(lifestyleList));
+    renderLifestyleHabits();
+  }
+
+  function renderRituals() {
+    const container = document.getElementById('ritualsContainer');
+    container.innerHTML = '';
+    const todayKey = getTodayKey();
+    const todayData = logs[todayKey] || { rituals: {} };
+
+    ritualList.forEach(item => {
+      const isChecked = !!(todayData.rituals && todayData.rituals[item.id]);
+      const row = document.createElement('label');
+      row.className = 'check-item ritual-item';
+      row.innerHTML = `
+        <span style="flex:1;">${item.text}</span>
+        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleRitual('${item.id}', this.checked)">
+        <button class="food-del" title="Entfernen" onclick="deleteRitual('${item.id}', event)">×</button>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  function toggleRitual(id, val) {
+    const todayKey = getTodayKey();
+    ensureLogDay(todayKey);
+    if (!logs[todayKey].rituals) logs[todayKey].rituals = {};
+    logs[todayKey].rituals[id] = val;
+    localStorage.setItem(KEY_LOGS, JSON.stringify(logs));
+  }
+
+  function addCustomRitual() {
+    const input = document.getElementById('newRitualInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const newId = 'r_' + Date.now();
+    ritualList.push({ id: newId, text });
+    localStorage.setItem(KEY_RITUALS, JSON.stringify(ritualList));
+    input.value = '';
+    renderRituals();
+  }
+
+  function deleteRitual(id, ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    ritualList = ritualList.filter(r => r.id !== id);
+    localStorage.setItem(KEY_RITUALS, JSON.stringify(ritualList));
+    renderRituals();
+  }
+
+  // Energy & Feeling Pills (Now fully customizable!)
+  function renderEnergyPills() {
+    const container = document.getElementById('energyGroup');
+    container.innerHTML = '';
+
+    energyList.forEach(e => {
+      const isActive = (currentEnergy === e);
+      const pill = document.createElement('div');
+      pill.className = `pill-container ${isActive ? 'active' : ''}`;
+      pill.innerHTML = `
+        <span class="pill-label" onclick="selectEnergy('${e}')">${e}</span>
+        <button class="pill-del-btn" title="Löschen" onclick="deleteCustomEnergy('${e}', event)">×</button>
+      `;
+      container.appendChild(pill);
+    });
+  }
+
+  function selectEnergy(val) {
+    if (currentEnergy === val) currentEnergy = "";
+    else currentEnergy = val;
+    renderEnergyPills();
+    saveTodayLog();
+  }
+
+  function addCustomEnergy() {
+    const input = document.getElementById('newEnergyInput');
+    const val = input.value.trim();
+    if (!val) return;
+    if (!energyList.includes(val)) {
+      energyList.push(val);
+      localStorage.setItem(KEY_ENERGY, JSON.stringify(energyList));
+    }
+    currentEnergy = val;
+    input.value = '';
+    renderEnergyPills();
+    saveTodayLog();
+  }
+
+  function deleteCustomEnergy(item, ev) {
+    ev.stopPropagation();
+    energyList = energyList.filter(e => e !== item);
+    if (currentEnergy === item) currentEnergy = "";
+    localStorage.setItem(KEY_ENERGY, JSON.stringify(energyList));
+    renderEnergyPills();
+    saveTodayLog();
+  }
+
+  // Symptoms Pills
+  function renderSymptomsPills() {
+    const container = document.getElementById('symptomsGroup');
+    container.innerHTML = '';
+
+    symptomList.forEach(s => {
+      const isActive = currentSymptoms.includes(s);
+      const pill = document.createElement('div');
+      pill.className = `pill-container ${isActive ? 'active' : ''}`;
+      pill.innerHTML = `
+        <span class="pill-label" onclick="toggleSymptom('${s}')">${s}</span>
+        <button class="pill-del-btn" title="Löschen" onclick="deleteCustomSymptom('${s}', event)">×</button>
+      `;
+      container.appendChild(pill);
+    });
+  }
+
+  function toggleSymptom(symp) {
+    const idx = currentSymptoms.indexOf(symp);
+    if (idx > -1) currentSymptoms.splice(idx, 1);
+    else currentSymptoms.push(symp);
+    renderSymptomsPills();
+    saveTodayLog();
+  }
+
+  function addCustomSymptom() {
+    const input = document.getElementById('newSymptomInput');
+    const val = input.value.trim();
+    if (!val) return;
+    if (!symptomList.includes(val)) {
+      symptomList.push(val);
+      localStorage.setItem(KEY_SYMPTOMS, JSON.stringify(symptomList));
+    }
+    if (!currentSymptoms.includes(val)) currentSymptoms.push(val);
+    input.value = '';
+    renderSymptomsPills();
+    saveTodayLog();
+  }
+
+  function deleteCustomSymptom(symp, ev) {
+    ev.stopPropagation();
+    symptomList = symptomList.filter(s => s !== symp);
+    currentSymptoms = currentSymptoms.filter(s => s !== symp);
+    localStorage.setItem(KEY_SYMPTOMS, JSON.stringify(symptomList));
+    renderSymptomsPills();
+    saveTodayLog();
+  }
+
+  function ensureLogDay(key) {
+    if (!logs[key]) {
+      logs[key] = {
+        lifestyle: {},
+        rituals: {},
+        energy: "",
+        symptoms: [],
+        notes: ''
+      };
+    }
+    if (!logs[key].lifestyle) logs[key].lifestyle = {};
+    if (!logs[key].rituals) logs[key].rituals = {};
+    if (!logs[key].symptoms) logs[key].symptoms = [];
+  }
+
+  function loadTodayLog() {
+    const todayKey = getTodayKey();
+    const entry = logs[todayKey] || {};
+
+    document.getElementById('dailyNotes').value = entry.notes || '';
+    currentEnergy = entry.energy || "";
+    renderEnergyPills();
+
+    currentSymptoms = entry.symptoms || [];
+    renderSymptomsPills();
+    renderLifestyleHabits();
+    renderRituals();
+  }
+
+  function saveTodayLog() {
+    const todayKey = getTodayKey();
+    ensureLogDay(todayKey);
+
+    logs[todayKey].notes = document.getElementById('dailyNotes').value;
+    logs[todayKey].energy = currentEnergy;
+    logs[todayKey].symptoms = currentSymptoms;
+
+    localStorage.setItem(KEY_LOGS, JSON.stringify(logs));
+  }
+
+  function archiveCurrentCyclePrompt() {
+    const todayStr = getTodayKey();
+    const startStr = settings.lastPeriodDate;
+    
+    const startDate = new Date(startStr);
+    const endDate = new Date(todayStr);
+    const m1 = startDate.toLocaleDateString('de-DE', { month: 'long' });
+    const m2 = endDate.toLocaleDateString('de-DE', { month: 'long' });
+    const yr = endDate.getFullYear();
+    const autoName = m1 === m2 ? `Zyklus ${m1} ${yr}` : `Zyklus ${m1}/${m2} ${yr}`;
+
+    const cycleName = prompt("Name für den abzuschließenden Zyklus:", autoName);
+    if (!cycleName) return;
+
+    const newStart = prompt("Erster Tag der NEUEN Periode (JJJJ-MM-TT):", todayStr);
+    if (!newStart) return;
+
+    const archiveEntry = {
+      name: cycleName,
+      startDate: startStr,
+      endDate: todayStr,
+      cycleLength: parseInt(settings.cycleLength) || 28,
+      periodLength: parseInt(settings.periodLength) || 5,
+      logs: JSON.parse(JSON.stringify(logs))
+    };
+
+    archives.push(archiveEntry);
+    localStorage.setItem(KEY_ARCHIVE, JSON.stringify(archives));
+
+    settings.lastPeriodDate = newStart;
+    localStorage.setItem(KEY_SETTINGS, JSON.stringify(settings));
+    document.getElementById('lastPeriodDate').value = newStart;
+
+    alert(`Der Zyklus "${cycleName}" wurde archiviert! Ein neuer Zyklus ab ${newStart} beginnt.`);
+    renderToday();
+    switchTab('report');
+  }
+
+  function selectCycleView(idx) {
+    selectedArchiveIndex = idx;
+    renderReport();
+  }
+
+  function renderReport() {
+    const y=moodCursor.getFullYear(), m=moodCursor.getMonth();
+    const monthName=new Date(y,m,1).toLocaleDateString('de-DE',{month:'long',year:'numeric'});
+    document.getElementById('reportMonthLabel').textContent=monthName;
+    const moods=getMoodStore();
+    const prefix=y+'-'+String(m+1).padStart(2,'0')+'-';
+    const monthEntries=Object.entries(moods).filter(([k])=>k.startsWith(prefix));
+    const tracked=monthEntries.filter(([,v])=>v && (v.mood || (v.moments&&v.moments.length))).length;
+    document.getElementById('statTrackedDays').textContent=tracked;
+
+    const moodCounts={}; MOODS.forEach(x=>moodCounts[x]=0);
+    const momentCounts={}; MOMENTS.forEach(x=>momentCounts[x]=0);
+    monthEntries.forEach(([,v])=>{if(v.mood)moodCounts[v.mood]=(moodCounts[v.mood]||0)+1;(v.moments||[]).forEach(x=>momentCounts[x]=(momentCounts[x]||0)+1)});
+    const topMood=Object.entries(moodCounts).sort((a,b)=>b[1]-a[1])[0];
+    document.getElementById('statTopMood').textContent=topMood&&topMood[1]?topMood[0]:'–';
+
+    const journalCount=getJournal().filter(x=>{const d=new Date(x.date);return d.getFullYear()===y&&d.getMonth()===m}).length;
+    document.getElementById('statJournalCount').textContent=journalCount;
+
+    const daysInMonth=new Date(y,m+1,0).getDate(); let ritualDayCount=0; const ritualCounts={}; ritualList.forEach(r=>ritualCounts[r.id]={text:r.text,count:0});
+    for(let d=1;d<=daysInMonth;d++){const k=prefix+String(d).padStart(2,'0'),e=logs[k];if(!e||!e.rituals)continue;let any=false;Object.entries(e.rituals).forEach(([id,on])=>{if(on){any=true;if(ritualCounts[id])ritualCounts[id].count++}});if(any)ritualDayCount++}
+    const ritualBase=Math.max(tracked,1); document.getElementById('statRitualRate').textContent=Math.round(ritualDayCount/ritualBase*100)+' %';
+
+    const bars=(obj,denom,empty)=>{const arr=Object.entries(obj).map(([label,val])=>[label,typeof val==='object'?val.count:val,typeof val==='object'?val.text:label]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);if(!arr.length)return '<div class="report-empty">'+empty+'</div>';return arr.map(([k,n,label])=>{const pct=Math.round(n/Math.max(denom,1)*100);return '<div class="report-bar-row"><span>'+label+'</span><div class="report-track"><div class="report-fill" style="width:'+Math.min(pct,100)+'%"></div></div><strong>'+n+'×</strong></div>'}).join('')};
+    document.getElementById('moodReportBars').innerHTML=bars(moodCounts,tracked,'Noch keine Stimmung für diesen Monat markiert.');
+    document.getElementById('momentReportBars').innerHTML=bars(momentCounts,tracked,'Noch keine Herzensmomente für diesen Monat markiert.');
+    document.getElementById('ritualReportBars').innerHTML=bars(ritualCounts,Math.max(tracked,ritualDayCount),'Noch keine Rituale für diesen Monat abgehakt.');
+  }
+
+  function renderArchiveBadges() {
+    const container = document.getElementById('archiveBadgesList');
+    container.innerHTML = '';
+
+    const btnCur = document.createElement('span');
+    btnCur.className = `archive-badge ${selectedArchiveIndex === -1 ? 'active' : ''}`;
+    btnCur.textContent = 'Aktueller Zyklus';
+    btnCur.onclick = () => selectCycleView(-1);
+    container.appendChild(btnCur);
+
+    archives.forEach((a, idx) => {
+      const b = document.createElement('span');
+      b.className = `archive-badge ${selectedArchiveIndex === idx ? 'active' : ''}`;
+      b.textContent = a.name;
+      b.onclick = () => selectCycleView(idx);
+      container.appendChild(b);
+    });
+  }
+
+  function updateSettings() {
+    settings.lastPeriodDate = document.getElementById('lastPeriodDate').value;
+    settings.cycleLength = parseInt(document.getElementById('cycleLength').value) || 28;
+    settings.periodLength = parseInt(document.getElementById('periodLength').value) || 5;
+  }
+
+  function saveSettingsAndRecalc() {
+    updateSettings();
+    localStorage.setItem(KEY_SETTINGS, JSON.stringify(settings));
+    renderToday();
+    alert('Zyklus-Kalibrierung harmonisiert & gespeichert!');
+    switchTab('today');
+  }
+
+  function switchTab(tab) {
+    const tabs=['today','season','magic','journal','report','settings'];
+    tabs.forEach(t=>{ const el=document.getElementById('tab-'+t); if(el) el.classList.toggle('hidden',t!==tab); const b=document.getElementById('btnTab'+t.charAt(0).toUpperCase()+t.slice(1)); if(b) b.classList.toggle('active',t===tab); });
+    if(tab==='season') {renderSeasonExtra();loadWeather();} if(tab==='report') renderReport(); if(tab==='journal') renderJournal(); if(tab==='magic') renderMagic(); if(tab==='settings') renderMoonPhaseSwipe();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function requestNotification() {
+    if (!('Notification' in window)) {
+      alert('Dein Browser unterstützt leider keine Benachrichtigungen.');
+      return;
+    }
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        new Notification('Mond & Rhythmus • Jenna', {
+          body: 'Zeit für deine kleine Me-Time & dein Herzens-Check-In heute ☾',
+          icon: ''
+        });
+        alert('Erinnerungen sanft aktiviert!');
+      } else {
+        alert('Benachrichtigungen wurden blockiert.');
+      }
+    });
+  }
+
+
+  function exportData() {
+    const backupObj = {
+      'jenna_mond_settings_v2': settings,
+      'jenna_mond_lifestyle_v2': lifestyleList,
+      'jenna_mond_rituals_v2': ritualList,
+      'jenna_mond_energy_v2': energyList,
+      'jenna_mond_symptoms_v2': symptomList,
+      'jenna_mond_logs_v2': logs,
+      'jenna_mond_archive_v2': archives
+    };
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupObj, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", "mond_rhythmus_jenna_backup.json");
+    dlAnchor.click();
+  }
+
+  // --- Storage Persistenz & Backup (Import / Export) ---
+  async function initPersistentStorage() {
+    if (navigator.storage && navigator.storage.persist) {
+      try {
+        const isPersisted = await navigator.storage.persist();
+        console.log("Storage persistence granted:", isPersisted);
+      } catch (err) {
+        console.warn("Storage persistence request failed:", err);
+      }
+    }
+  }
+
+  function triggerImport() {
+    document.getElementById('backupFileInput').click();
+  }
+
+  function handleFileImport(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        const keys = ['jenna_mond_settings_v2', 'jenna_mond_lifestyle_v2', 'jenna_mond_rituals_v2', 'jenna_mond_energy_v2', 'jenna_mond_symptoms_v2', 'jenna_mond_logs_v2', 'jenna_mond_archive_v2'];
+        let restoredCount = 0;
+        keys.forEach(k => {
+          if (data[k] !== undefined) {
+            localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
+            restoredCount++;
+          }
+        });
+        if (restoredCount > 0) {
+          alert("Backup erfolgreich importiert (" + restoredCount + " Bereiche wiederhergestellt)!");
+          location.reload();
+        } else {
+          alert("Keine kompatiblen Daten in der Backup-Datei gefunden.");
+        }
+      } catch (err) {
+        alert("Fehler beim Einlesen der Backup-Datei: " + err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  // --- Web App / Desktop Installation (PWA beforeinstallprompt) ---
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const installBtn = document.getElementById('installAppBtn');
+    if (installBtn) installBtn.style.display = 'block';
+  });
+
+  function installAppPrompt() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('App-Installation akzeptiert');
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      alert("Installation:\n\n• Chrome / Edge (Desktop/Android): Klicke im Adressfeld rechts oben auf das Installations-Symbol oder wähle im Menü (⋮) 'App installieren' / 'Zum Startbildschirm hinzufügen'.\n• Safari (iOS/Mac): Klicke auf 'Teilen' -> 'Zum Home-Bildschirm' / 'Zum Dock hinzufügen'.");
+    }
+  }
+
+
+  
+  // PWA Service Worker Registration
+  
+  // PWA Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('ServiceWorker aktiv! Scope:', reg.scope))
+        .catch(err => console.error('SW Registrierung fehlgeschlagen:', err));
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => { 
+    init(); 
+    initPersistentStorage(); 
+  });
+
+// === Cozy Seasons Expansion ===
+const KEY_EVENTS='jenna_events_v3', KEY_JOURNAL='jenna_journal_v3', KEY_RHYTHM='jenna_rhythm_v3';
+let calendarCursor=new Date();
+const AFFIRMATIONS=["Ich darf langsam wachsen und trotzdem vorankommen.","Meine Energie ist kostbar. Ich wähle bewusst, wohin sie fließt.","Ich muss heute nicht alles schaffen, um genug zu sein.","Ich vertraue meinem eigenen Rhythmus.","Kleine Schritte sind echte Bewegung.","Ich darf weich sein und klare Grenzen haben.","Mein Körper ist kein Projekt – er ist mein Zuhause.","Heute suche ich nicht Perfektion, sondern Verbindung.","Ich darf neu beginnen, so oft ich es brauche.","Ruhe ist Teil meines Weges, nicht seine Unterbrechung."];
+const SEASONS={winter:{name:'Winter',icon:'❄️',mood:'Stille & Wärme',intro:'Die Natur zieht sich zurück. Weniger Außen, mehr Wärme, Ruhe und kleine Lichtinseln.',ideas:[['🥣 Rezept','Cremige Brokkoli-Kartoffel-Suppe mit gerösteten Nüssen'],['🕯 DIY','Orangen-Girlande oder Kerzenglas mit getrockneten Kräutern'],['🌲 Aktivität','Winterspaziergang mit warmem Tee'],['🧘 Bewegung','Yin Yoga, Hüftöffner und ruhige Mobilität']],well:['10 Minuten Yin Yoga bei gedimmtem Licht','Wärmendes Fußbad + anschließend eincremen','Langsamer Spaziergang ohne Leistungsziel']},spring:{name:'Frühling',icon:'🌷',mood:'Aufbruch & Leichtigkeit',intro:'Alles beginnt wieder zu knospen. Gute Zeit für Neugier, frische Routinen und Bewegung im Licht.',ideas:[['🥗 Rezept','Frühlingspasta mit Erbsen, Zitrone und Kräutern'],['🌿 DIY','Kräutertöpfe oder kleine gepresste-Blüten-Karte'],['🚲 Aktivität','Radtour, Picknick oder erster langer Abend draußen'],['🧘 Bewegung','Fließendes Yoga und ein kleiner Energie-Walk']],well:['Sonnengruß in deinem Tempo','Fenster auf + 5 Minuten Stretching','Eine kleine Ecke entrümpeln und neu gestalten']},summer:{name:'Sommer',icon:'☀️',mood:'Fülle & Lebendigkeit',intro:'Lange Tage laden zu Verbindung, Wasser, Bewegung und spielerischer Leichtigkeit ein.',ideas:[['🍓 Rezept','Beeren-Skyr-Bowl oder leichter Tomaten-Pasta-Salat'],['🌼 DIY','Blumen pressen oder Sommer-Fototagebuch'],['🌊 Aktivität','See, Barfußrunde oder Sonnenuntergangspicknick'],['🧘 Bewegung','Morgen-Yoga, Schwimmen oder lockere Fahrradrunde']],well:['Früh am Tag bewegen, wenn es kühl ist','Kühlende Gesichtspflege und viel trinken','Abends 10 Minuten ohne Bildschirm draußen sitzen']},autumn:{name:'Herbst',icon:'🍂',mood:'Cozy & Loslassen',intro:'Goldenes Licht, kühlere Luft und Rückzug: eine gute Zeit zum Sortieren, Wärmen und bewussten Loslassen.',ideas:[['🍲 Rezept','Kürbisfreie Alternative: cremige Pilz-Brokkoli-Pasta mit Walnüssen'],['🍁 DIY','Blätter pressen, Herbstkranz oder kleines Kerzenglas'],['☕ Aktivität','Waldspaziergang + Café oder gemütlicher Spieleabend'],['🧘 Bewegung','Slow Flow Yoga, Rücken-Mobility und Spaziergang']],well:['15 Minuten Slow Flow mit Fokus auf Rücken und Hüfte','Warme Dusche + Körperöl + frische Bettwäsche','Herbstspaziergang: 5 schöne Dinge bewusst fotografieren']}};
+function getSeason(){let m=new Date().getMonth()+1;return m===12||m<=2?'winter':m<=5?'spring':m<=8?'summer':'autumn'}
+function renderSeasonal(){let key=getSeason(),d=SEASONS[key];document.body.classList.add('season-'+key);document.getElementById('seasonChip').textContent=d.icon+' '+d.name;document.getElementById('seasonMood').textContent=d.mood;document.getElementById('seasonTitle').textContent=d.icon+' '+d.name+' – Inspiration';document.getElementById('seasonIntro').textContent=d.intro;let html=d.ideas.map(x=>`<div class="idea-card"><b>${x[0]}</b><p>${x[1]}</p></div>`).join('');document.getElementById('seasonDeepIdeas').innerHTML=html;document.getElementById('wellnessIdeas').innerHTML=d.well.map(x=>`<div class="oracle-box"><p>${x}</p></div>`).join('');let day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000);makeParticles(key)}
+function makeParticles(key){let layer=document.createElement('div');layer.className='season-layer';let chars={autumn:['🍂','🍁'],winter:['❄','·'],spring:['✿','❀'],summer:['✦','·']}[key];for(let i=0;i<15;i++){let s=document.createElement('span');s.className='season-particle';s.textContent=chars[i%chars.length];s.style.left=(i*7%100)+'%';s.style.animationDuration=(10+i%7)+'s';s.style.animationDelay=(-i*.8)+'s';s.style.fontSize=(10+i%4*3)+'px';layer.appendChild(s)}document.body.appendChild(layer)}
+function renderMagic(){let m=getMoonPhaseData(new Date());document.getElementById('magicMoonGlyph').textContent=m.glyph;document.getElementById('magicMoonName').textContent=m.name;document.getElementById('magicIllumination').textContent=m.illumination+' % beleuchtet';let n=m.name.toLowerCase(),data=n.includes('neumond')?['Samen setzen','Schreibe drei Intentionen für den kommenden Mondzyklus auf.','Was möchte in meinem Leben neu beginnen?']:n.includes('vollmond')?['Fülle & Loslassen','Zünde eine Kerze an: würdige, was gewachsen ist, und notiere, was du nicht weitertragen möchtest.','Was darf ich feiern – und was darf gehen?']:n.includes('zunehm')||n.includes('erstes')?['Wachsen & Handeln','Wähle eine Intention und gib ihr heute einen kleinen konkreten Schritt.','Was braucht meine Idee, damit sie wachsen kann?']:['Klärung & Rückzug','Räume eine kleine Ecke auf und verbinde das äußere Loslassen mit einem inneren.','Was kostet mich Energie, obwohl es mir nicht mehr dient?'];document.getElementById('magicPhaseTitle').textContent=data[0];document.getElementById('magicIntention').textContent=data[0];document.getElementById('magicRitual').textContent=data[1];document.getElementById('magicPrompt').textContent=data[2];document.getElementById('magicNotes').value=localStorage.getItem('jenna_magic_notes')||''}
+function rhythmData(){let all=JSON.parse(localStorage.getItem(KEY_RHYTHM)||'{}'),k=getTodayKey();return [all,k,all[k]||{water:0,journal:false,learn:false,move:false}]}
+function renderRhythm(){let [a,k,d]=rhythmData();document.getElementById('waterBadge').textContent=d.water+' / 8';document.getElementById('waterProgress').style.width=Math.min(100,d.water/8*100)+'%';document.getElementById('habitJournal').checked=d.journal;document.getElementById('habitLearn').checked=d.learn;document.getElementById('habitMove').checked=d.move}
+function addWater(){let [a,k,d]=rhythmData();d.water=Math.min(12,(d.water||0)+1);a[k]=d;localStorage.setItem(KEY_RHYTHM,JSON.stringify(a));renderRhythm()}
+function saveDailyRhythm(){let [a,k,d]=rhythmData();d.journal=document.getElementById('habitJournal').checked;d.learn=document.getElementById('habitLearn').checked;d.move=document.getElementById('habitMove').checked;a[k]=d;localStorage.setItem(KEY_RHYTHM,JSON.stringify(a));renderRhythm()}
+function getEvents(){return JSON.parse(localStorage.getItem(KEY_EVENTS)||'[]')}function saveEvents(x){localStorage.setItem(KEY_EVENTS,JSON.stringify(x))}
+function renderCalendar(){let y=calendarCursor.getFullYear(),m=calendarCursor.getMonth(),first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),start=(first.getDay()+6)%7,ev=getEvents();document.getElementById('calendarTitle').textContent=first.toLocaleDateString('de-DE',{month:'long',year:'numeric'});let h=['Mo','Di','Mi','Do','Fr','Sa','So'].map(x=>`<div class="cal-dow">${x}</div>`).join('');for(let i=0;i<start;i++)h+='<div class="cal-day empty"></div>';for(let d=1;d<=days;d++){let ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,today=ds===getTodayKey(),has=ev.some(e=>e.date===ds);h+=`<div class="cal-day ${today?'today':''} ${has?'has-event':''}" onclick="document.getElementById('eventDate').value='${ds}'">${d}</div>`}document.getElementById('calendarGrid').innerHTML=h;renderEvents()}
+function changeMonth(n){calendarCursor.setMonth(calendarCursor.getMonth()+n);renderCalendar()}
+function addEvent(){let date=document.getElementById('eventDate').value,title=document.getElementById('eventTitle').value.trim(),time=document.getElementById('eventTime').value;if(!date||!title)return alert('Bitte Datum und Termin eintragen.');let e=getEvents();e.push({id:Date.now(),date,time,title});e.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));saveEvents(e);document.getElementById('eventTitle').value='';renderCalendar()}
+function renderEvents(){let e=getEvents().filter(x=>x.date>=getTodayKey()).slice(0,8);document.getElementById('eventList').innerHTML=e.length?e.map(x=>`<div class="event-item"><strong>${new Date(x.date+'T12:00').toLocaleDateString('de-DE',{day:'2-digit',month:'short'})}${x.time?' · '+x.time:''}</strong><br>${x.title} <button class="food-del" style="float:right" onclick="deleteEvent(${x.id})">×</button></div>`).join(''):'<p style="color:var(--muted);font-size:.8rem;margin-top:12px">Noch keine kommenden Termine.</p>'}
+function deleteEvent(id){saveEvents(getEvents().filter(x=>x.id!==id));renderCalendar()}
+function getJournal(){return JSON.parse(localStorage.getItem(KEY_JOURNAL)||'[]')}function saveJournalEntry(){let text=document.getElementById('journalText').value.trim();if(!text)return;let j=getJournal();j.unshift({id:Date.now(),date:new Date().toISOString(),title:'',text});localStorage.setItem(KEY_JOURNAL,JSON.stringify(j));document.getElementById('journalText').value='';renderJournal()}
+function renderJournal(){let j=getJournal();document.getElementById('journalList').innerHTML=j.length?j.slice(0,20).map(x=>`<div class="journal-entry"><strong>${x.title}</strong><span style="float:right;color:var(--muted);font-size:.7rem">${new Date(x.date).toLocaleDateString('de-DE')}</span><p style="font-size:.82rem;margin-top:5px;white-space:pre-wrap">${x.text}</p><button class="food-del" onclick="deleteJournal(${x.id})">×</button></div>`).join(''):'<p style="color:var(--muted);font-size:.82rem">Deine erste Seite wartet auf dich.</p>'}function deleteJournal(id){localStorage.setItem(KEY_JOURNAL,JSON.stringify(getJournal().filter(x=>x.id!==id)));renderJournal()}
+function setWeatherMode(){document.getElementById('weatherChip').textContent='🌦 Wetter im Saison-Reiter'}
+const oldInit=init;init=function(){oldInit();renderSeasonal();renderMagic();renderRhythm();renderJournal();setWeatherMode();initCozyV4()}
+
+
+// Cozy v4: all content is local except optional live weather.
+const AFFIRM_START=['Ich darf','Ich entscheide mich,','Ich lerne,','Ich erlaube mir,','Ich vertraue darauf,','Ich bin bereit,','Ich verdiene es,','Ich finde Mut,','Ich schenke mir','Ich nehme mir Zeit,','Ich erkenne,','Ich feiere'];
+const AFFIRM_END=['meine Grenzen liebevoll zu achten.','meinen eigenen Rhythmus zu leben.','auch kleine Fortschritte zu würdigen.','heute freundlich mit mir zu sprechen.','meine Bedürfnisse ernst zu nehmen.','Pausen ohne schlechtes Gewissen zu machen.','mich nicht mit anderen zu vergleichen.','meine Kreativität frei zu entfalten.','neue Wege auszuprobieren.','mir selbst zuzuhören.','Unperfektes willkommen zu heißen.','echte Nähe zuzulassen.','mich selbst nicht zu überfordern.','das Schöne im Alltäglichen zu entdecken.','meinen Körper respektvoll zu behandeln.','das Loslassen zu üben.','meine Neugier zu nähren.','einen mutigen kleinen Schritt zu gehen.','meine Erfolge anzuerkennen.','um Unterstützung zu bitten.','meine Gedanken zur Ruhe kommen zu lassen.','mit offenem Herzen zu lernen.','den heutigen Tag bewusst zu gestalten.','auch schwierige Gefühle anzunehmen.','mir Freude ohne Anlass zu erlauben.','meine Aufmerksamkeit sanft zu lenken.','meinen Herzensmenschen Raum zu geben.','meine Energie klug einzuteilen.','mir selbst Sicherheit zu geben.','die Natur als Kraftquelle zu entdecken.','mich von Erwartungen zu lösen.','mir Zeit für Erholung zu schenken.','meine Stimme zu benutzen.','Veränderungen als Möglichkeit zu sehen.','im Hier und Jetzt anzukommen.','den Zauber kleiner Rituale zu genießen.','meinem Wachstum geduldig zu begegnen.'];
+const AFFIRMATIONS_444=AFFIRM_START.flatMap((a,i)=>AFFIRM_END.map((b,j)=>a+' '+b));
+const QUESTION_TOPICS=['meine Energie','meine Grenzen','meine Beziehungen','meine Kreativität','meine Träume','meine Ruhe','meine Neugier','meine Ängste','meine Freude','mein Körpergefühl','meine Routinen','meine Freiheit','mein Mut','meine Dankbarkeit','meine Vergangenheit','meine Zukunft','mein Lernen','meine Naturverbundenheit','mein Zuhause','meine Selbstfürsorge','meine Entscheidungen','meine Freundschaften','meine Zweisamkeit','meine Intuition','meine Erwartungen','mein Selbstvertrauen','meine kleinen Erfolge','meine Bedürfnisse','meine Gewohnheiten','meine Inspiration','mein Loslassen','meine Hoffnung','meine Erholung','meine Werte','mein Umgang mit Zeit','meine Sehnsucht','meine Lebendigkeit'];
+const QUESTION_FORMS=['Was habe ich heute über {x} gelernt?','Was würde sich verändern, wenn ich {x} mehr Raum gäbe?','Welche kleine Handlung könnte {x} morgen guttun?','Wann habe ich {x} zuletzt bewusst gespürt?','Welche Geschichte erzähle ich mir über {x} – und stimmt sie?','Was möchte ich in Bezug auf {x} liebevoll loslassen?'];
+const JOURNAL_QUESTIONS_222=QUESTION_TOPICS.flatMap(x=>QUESTION_FORMS.map(f=>f.replace('{x}',x)));
+const dayNumber=()=>Math.floor(Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())/86400000);
+function renderDailyV4(){let n=dayNumber();document.getElementById('dailyAffirmation').textContent='„'+AFFIRMATIONS_444[((n%444)+444)%444]+'“';document.getElementById('affirmationCount').textContent='444 unterschiedliche Affirmationen · jeden Tag eine neue';document.getElementById('journalQuestion1').textContent=JOURNAL_QUESTIONS_222[(n*2)%222];document.getElementById('journalQuestion2').textContent=JOURNAL_QUESTIONS_222[(n*2+1)%222];const nudges=['Du bist kein Kaktus. Ein Glas Wasser wäre jetzt eine brillante Idee! 🌵','Hydration, Hexe! Dein Gehirn bestellt Nachschub. 💧','Ein Schluck für dich, bevor du wieder die Welt rettest.','Deine Nieren haben eine Beschwerde eingereicht. Wasser, bitte!','Zaubertränke sind gut. Leitungswasser tut es auch.','Dein innerer Zimmerfarn winkt verzweifelt. Gieß dich!','Plot Twist: Kaffee ist kein Ersatz für Wasser.'];let count=rhythmData()[2].water||0;document.getElementById('waterNudge').textContent=nudges[(n+count)%nudges.length]}
+const oldAddWater=addWater;addWater=function(){oldAddWater();renderDailyV4()};
+const RECIPES={autumn:['Pilz-Brokkoli-Pasta','200 g Pasta, 250 g Pilze, 1 kleiner Brokkoli, 100 g Frischkäse, 1 Knoblauchzehe, Zitronensaft.','Pasta kochen. Brokkoli 5 Min. mitgaren. Pilze mit Knoblauch anbraten, Frischkäse und etwas Nudelwasser einrühren. Alles mischen und mit Zitrone abschmecken.'],winter:['Wärmende Linsen-Karotten-Suppe','150 g rote Linsen, 3 Karotten, 1 Zwiebel, 600 ml Brühe, Kreuzkümmel, Zitrone.','Zwiebel und Karotten anbraten. Linsen und Brühe zugeben, 18 Min. köcheln. Würzen, nach Wunsch pürieren und mit Zitrone servieren.'],spring:['Zitronige Erbsen-Pasta','200 g Pasta, 200 g Erbsen, 1 Bio-Zitrone, 2 EL Frischkäse, Petersilie.','Pasta kochen, Erbsen 3 Min. mitgaren. Frischkäse mit Nudelwasser und Zitronenabrieb verrühren. Mit Petersilie servieren.'],summer:['Tomaten-Bohnen-Salat','300 g Tomaten, 1 Dose weiße Bohnen (abgetropft), 1 Gurke, Basilikum, 1 EL Olivenöl, Zitrone.','Alles klein schneiden, Bohnen abspülen, mit Öl und Zitronensaft mischen. Mit Basilikum abschmecken.']};
+const DIYS={autumn:[['Blätter-Laterne','Gepresste Blätter mit etwas Kleister außen auf ein leeres Glas kleben, trocknen lassen und LED-Licht hineinstellen.'],['Duftende Orangengirlande','Orangenscheiben bei niedriger Temperatur vollständig trocknen, auf Faden ziehen und dekorieren.'],['Herbstliches Lesezeichen','Blätter pressen, zwischen zwei Streifen transparentes Klebeband legen und ausschneiden.'],['Cozy-Gewürzglas','Zimt, Sternanis und getrocknete Orangenschale in ein Glas füllen – als Duftdeko.']],winter:[['Papiersterne','Papierstreifen falten, zu Sternen kleben und ans Fenster hängen.'],['Winterlicht','Ein Schraubglas mit Papier-Schneeflocken verzieren und LED-Licht hineinstellen.'],['Woll-Pompons','Wolle um Karton wickeln, abbinden und zu Pompons schneiden.'],['Winterpost','Kleine Karten mit gepressten Zweigen gestalten.']],spring:[['Mini-Kräutergarten','Basilikum und Schnittlauch in Töpfe säen und ans helle Fenster stellen.'],['Blütenpresse','Blüten zwischen Papier in einem Buch pressen.'],['Saatpapier','Altpapier einweichen, mit Blumensamen mischen, flach trocknen.'],['Fensterblumen','Blumen aus Transparentpapier schneiden und ans Fenster kleben.']],summer:[['Blüten-Eiswürfel','Essbare, ungespritzte Blüten in Eiswürfelformen mit Wasser einfrieren.'],['Sommer-Erinnerungsglas','Zettel mit schönen Momenten sammeln und ins Glas geben.'],['Muschelrahmen','Fundstücke von einem Spaziergang in einen Bilderrahmen legen.'],['Kräuter-Etiketten','Kleine Holzstäbchen bemalen und Kräutertöpfe beschriften.']]};
+function renderSeasonExtra(){let season=getSeason(),r=RECIPES[season],w=Math.floor(dayNumber()/7)%4,d=DIYS[season][w];document.getElementById('seasonRecipe').innerHTML='<div class="oracle-box"><strong>'+r[0]+'</strong><p><b>Für 2 Personen:</b> '+r[1]+'</p><p style="margin-top:8px">'+r[2]+'</p></div>';document.getElementById('weeklyDIY').innerHTML='<div class="oracle-box"><strong>'+d[0]+'</strong><p>'+d[1]+'</p></div>'}
+const WEATHER_CODES={0:['☀️','klar'],1:['🌤','überwiegend klar'],2:['⛅','leicht bewölkt'],3:['☁️','bedeckt'],45:['🌫','neblig'],48:['🌫','neblig'],51:['🌦','Nieselregen'],53:['🌦','Nieselregen'],55:['🌧','Nieselregen'],61:['🌧','Regen'],63:['🌧','Regen'],65:['🌧','starker Regen'],71:['🌨','Schnee'],73:['🌨','Schnee'],75:['❄️','Schnee'],80:['🌦','Schauer'],81:['🌧','Schauer'],82:['🌧','starke Schauer'],95:['⛈','Gewitter']};
+async function loadWeather(){const el=document.getElementById('liveWeather');let city=(document.getElementById('weatherCity').value||'Xanten').trim();localStorage.setItem('jenna_weather_city',city);el.textContent='Wetter wird abgerufen …';try{let geo=await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(city)+'&count=1&language=de&format=json');if(!geo.ok)throw Error();let g=(await geo.json()).results?.[0];if(!g)throw Error('Ort nicht gefunden');let url='https://api.open-meteo.com/v1/forecast?latitude='+g.latitude+'&longitude='+g.longitude+'&current=temperature_2m,apparent_temperature,weather_code,precipitation&timezone=auto';let resp=await fetch(url);if(!resp.ok)throw Error();let v=(await resp.json()).current;let code=v.weather_code;let weather=WEATHER_CODES[code]||['🌤','wechselhaft'];let t=Math.round(v.temperature_2m);let coat=t<5?'Winterjacke, Schal und warme Schuhe':t<12?'Warme Jacke und mehrere Schichten':t<19?'Leichte Jacke oder Cardigan':t<26?'Leichte Kleidung und bei Sonne Sonnenschutz':'Luftige Kleidung, Schatten und ausreichend Wasser';let wet=(code>=51&&code<=82)||code>=95;if(wet)coat+='; Regenschutz mitnehmen';el.textContent=weather[0]+' '+g.name+': '+t+' °C · '+weather[1]+' (gefühlt '+Math.round(v.apparent_temperature)+' °C). ✧ Kleidung: '+coat+'.';document.body.classList.toggle('weather-rain',wet);document.getElementById('weatherChip').textContent=weather[0]+' '+t+' °C';}catch(e){el.textContent='Wetter gerade nicht verfügbar. Bitte Internetverbindung und Ortsnamen prüfen. Die übrige App funktioniert offline.'}}
+const MOON_ZODIAC=['Widder','Stier','Zwillinge','Krebs','Löwe','Jungfrau','Waage','Skorpion','Schütze','Steinbock','Wassermann','Fische'];
+const ZODIAC_THEME=['Mut, Neubeginn und Selbstbestimmung','Sicherheit, Genuss und Werte','Gespräche, Ideen und Klarheit','Geborgenheit und Gefühle','Kreativität und Sichtbarkeit','Alltag, Gesundheit und Ordnung','Beziehungen und Ausgleich','Tiefe, Vertrauen und Wandlung','Freiheit, Sinn und Abenteuer','Verantwortung und langfristige Ziele','Gemeinschaft und Eigenständigkeit','Mitgefühl, Träume und Intuition'];
+function zodiacForFullMoon(date){let y=date.getFullYear(),start=Date.UTC(y,0,0),d=Math.floor((date.getTime()-start)/86400000);let solar=(d-80+365.2422)%365.2422;let longitude=(solar/365.2422*360+180)%360;return Math.floor(longitude/30)%12}
+function nextFullMoon(){let date=new Date(),best=null;for(let i=0;i<33;i++){let d=new Date(date.getFullYear(),date.getMonth(),date.getDate()+i,12),m=getMoonPhaseData(d);if(!best||m.illumination>best.illumination)best={date:d,illumination:m.illumination};if(i>0&&m.illumination<best.illumination)break;}return best.date}
+function renderFullMoon(){let full=nextFullMoon(),z=zodiacForFullMoon(full),sign=MOON_ZODIAC[z],theme=ZODIAC_THEME[z];document.getElementById('fullMoonCeremony').innerHTML='<p class="oracle-box"><strong>🌕 Nächster Vollmond: '+full.toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'})+'</strong><br>Astrologisches Zeichen (näherungsweise): <b>'+sign+'</b><br>Symbolisches Thema: '+theme+'.</p><div class="oracle-box"><strong>✦ Deine Intention</strong><p>Ich würdige, was gewachsen ist, und begegne dem Thema '+theme+' mit Klarheit und Mitgefühl.</p></div><div class="oracle-box"><strong>✍ Journaling-Fragen</strong><p>Was ist in mir in Bezug auf '+theme+' gereift?<br>Was möchte ich zum nächsten Mondzyklus verändern?</p></div>'}
+const oldRenderMagic=renderMagic;renderMagic=function(){oldRenderMagic();renderFullMoon()};
+const MOODS=['😔','😕','😐','🙂','🥰'];const DEFAULT_MOMENTS=['Zweisamkeit','Kreativ gewesen','Spaziergang im Grünen','Gelernt','Gelesen'];let MOMENTS=JSON.parse(localStorage.getItem('jenna_mood_moments_v1')||'null')||[...DEFAULT_MOMENTS];let moodCursor=new Date(),selectedMoodDate=getTodayKey();
+function getMoodStore(){try{return JSON.parse(localStorage.getItem('jenna_moods_v4')||'{}')}catch(e){return {}}}
+function changeMoodMonth(n){moodCursor=new Date(moodCursor.getFullYear(),moodCursor.getMonth()+n,1);renderMoodCalendar()}
+function renderMoodCalendar(){let y=moodCursor.getFullYear(),m=moodCursor.getMonth(),days=new Date(y,m+1,0).getDate(),start=(new Date(y,m,1).getDay()+6)%7,data=getMoodStore();document.getElementById('moodMonthTitle').textContent=new Date(y,m,1).toLocaleDateString('de-DE',{month:'long',year:'numeric'});let html=['Mo','Di','Mi','Do','Fr','Sa','So'].map(x=>'<div class="mood-head">'+x+'</div>').join('');for(let i=0;i<start;i++)html+='<div></div>';for(let d=1;d<=days;d++){let key=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),a=data[key]||{};html+='<button class="mood-day '+(key===selectedMoodDate?'selected':'')+'" onclick="selectMoodDate(\''+key+'\')">'+d+'<span class="mood-dot">'+(a.mood||'·')+'</span></button>'}document.getElementById('moodCalendar').innerHTML=html;renderMoodDay()}
+function selectMoodDate(k){selectedMoodDate=k;renderMoodCalendar()}
+function setMood(m){let a=getMoodStore();a[selectedMoodDate]??={};a[selectedMoodDate].mood=m;localStorage.setItem('jenna_moods_v4',JSON.stringify(a));renderMoodCalendar()}
+function toggleMoment(v){let a=getMoodStore();a[selectedMoodDate]??={};let list=a[selectedMoodDate].moments||[];a[selectedMoodDate].moments=list.includes(v)?list.filter(x=>x!==v):[...list,v];localStorage.setItem('jenna_moods_v4',JSON.stringify(a));renderMoodCalendar()}
+function addMoodMoment(){let i=document.getElementById('newMoodMoment'),v=i.value.trim();if(!v||MOMENTS.includes(v))return;MOMENTS.push(v);localStorage.setItem('jenna_mood_moments_v1',JSON.stringify(MOMENTS));i.value='';renderMoodDay()}function renderMoodDay(){let a=getMoodStore()[selectedMoodDate]||{},el=document.getElementById('moodDayPanel');el.innerHTML='<p class="subtle">'+new Date(selectedMoodDate+'T12:00').toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})+'</p><label>Wie war deine Stimmung?</label><div>'+MOODS.map(m=>'<button class="mood-pill '+(a.mood===m?'active':'')+'" onclick="setMood(\''+m+'\')">'+m+'</button>').join('')+'</div><label style="margin-top:12px">Was hat deinen Tag bereichert?</label><div>'+MOMENTS.map(v=>'<button class="mood-pill '+((a.moments||[]).includes(v)?'active':'')+'" onclick="toggleMoment(\''+v.replace(/'/g,"\\'")+'\')">'+v+'</button>').join('')+'</div><div class="add-item-row" style="margin-top:10px"><input id="newMoodMoment" type="text" placeholder="+ Eigenen Punkt hinzufügen …" onkeydown="if(event.key===\'Enter\')addMoodMoment()"><button onclick="addMoodMoment()">+</button></div>'}
+const oldRenderJournal=renderJournal;renderJournal=function(){oldRenderJournal();renderMoodCalendar();renderDailyV4()};
+
+function renderMoonPhaseSwipe(){
+ const box=document.getElementById('moonPhaseSwipe'); if(!box)return;
+ const current=getMoonPhaseData(new Date()).name;
+ const phases=[
+  {name:'Neumond',g:'🌑',sky:'Der Mond steht ungefähr zwischen Erde und Sonne. Seine beleuchtete Seite zeigt von uns weg – deshalb ist er am Himmel kaum sichtbar.',meaning:'Ein neuer Mondzyklus beginnt. Symbolisch steht diese Phase für Ruhe, Neubeginn, Intention und das Sammeln von Kraft.',impulse:'Weniger müssen, mehr lauschen. Was möchtest du in den kommenden Wochen nähren?'},
+  {name:'Zunehmende Mondsichel',g:'🌒',sky:'Nach dem Neumond wird rechts eine schmale beleuchtete Sichel sichtbar. Mit jedem Abend nimmt der sichtbare Lichtanteil zu.',meaning:'Die ersten Schritte nach einem Neubeginn. Ideen dürfen Form bekommen, ohne schon perfekt sein zu müssen.',impulse:'Wähle einen kleinen Schritt für etwas, das wachsen soll.'},
+  {name:'Erstes Viertel',g:'🌓',sky:'Etwa eine Woche nach Neumond sehen wir ungefähr die Hälfte der Mondscheibe beleuchtet. Der Mond hat etwa ein Viertel seiner Umlaufbahn zurückgelegt.',meaning:'Symbolisch eine Phase für Entscheidung, Bewegung und das Überwinden erster Widerstände.',impulse:'Wo braucht es heute eine klare Entscheidung statt weiteres Grübeln?'},
+  {name:'Zunehmender Dreiviertelmond',g:'🌔',sky:'Mehr als die Hälfte der sichtbaren Mondseite ist beleuchtet. Der Mond bewegt sich weiter auf den Vollmond zu.',meaning:'Fülle baut sich auf. Eine gute Zeit zum Verfeinern, Dranbleiben und Nachjustieren.',impulse:'Was funktioniert schon – und was braucht nur eine kleine Korrektur?'},
+  {name:'Vollmond',g:'🌕',sky:'Die Erde befindet sich ungefähr zwischen Sonne und Mond. Die uns zugewandte Mondseite wird fast vollständig von der Sonne beleuchtet.',meaning:'In spirituellen Traditionen steht der Vollmond für Höhepunkt, Sichtbarkeit, Fülle und Loslassen. Diese Deutung ist symbolisch, nicht astronomisch.',impulse:'Was darfst du würdigen? Und was möchtest du bewusst nicht in den nächsten Zyklus mitnehmen?'},
+  {name:'Abnehmender Dreiviertelmond',g:'🌖',sky:'Nach dem Vollmond nimmt die sichtbare Beleuchtung wieder ab, obwohl noch mehr als die Hälfte der Scheibe hell erscheint.',meaning:'Eine Phase des Teilens, Sortierens und Integrierens dessen, was der Zyklus gebracht hat.',impulse:'Was hast du gelernt, das du behalten oder weitergeben möchtest?'},
+  {name:'Letztes Viertel',g:'🌗',sky:'Wieder erscheint ungefähr eine Hälfte der Mondscheibe beleuchtet – diesmal auf dem Weg zurück zum Neumond.',meaning:'Symbolisch geht es um Klärung, Grenzen und bewusstes Loslassen.',impulse:'Was nimmt Raum ein, obwohl es seinen Zweck längst erfüllt hat?'},
+  {name:'Abnehmende Mondsichel (Balsamischer Mond)',g:'🌘',sky:'Kurz vor Neumond bleibt nur noch eine schmale beleuchtete Sichel. Der Mondzyklus nähert sich seinem Ende.',meaning:'Rückzug, Regeneration und Abschluss. Nicht jede Phase verlangt Produktivität.',impulse:'Was darf heute unfertig bleiben, damit du wirklich zur Ruhe kommst?'}
+ ];
+ let idx=phases.findIndex(p=>p.name===current); if(idx<0)idx=0; const ordered=phases.slice(idx).concat(phases.slice(0,idx));
+ box.innerHTML=ordered.map((p,i)=>`<article class="moon-phase-card ${i===0?'current':''}"><div class="phase-current-label">${i===0?'✦ Heutige Mondphase ✦':''}</div><div class="phase-big">${p.g}</div><div class="phase-card-title">${p.name}</div><div class="phase-section"><strong>🌌 Was passiert am Himmel?</strong><p>${p.sky}</p></div><div class="phase-section"><strong>✦ Symbolische Bedeutung</strong><p>${p.meaning}</p></div><div class="phase-section"><strong>☾ Impuls für dich</strong><p>${p.impulse}</p></div></article>`).join(''); box.scrollLeft=0;
+}
+
+function initCozyV4(){document.getElementById('weatherCity').value=localStorage.getItem('jenna_weather_city')||'Xanten';renderDailyV4();renderSeasonExtra();renderFullMoon();renderMoodCalendar();loadWeather();setInterval(()=>{renderDailyV4();renderToday();renderMagic()},3600000)}
+
+</script>
+</body>
+</html>
